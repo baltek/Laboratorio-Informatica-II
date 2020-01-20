@@ -4,17 +4,20 @@ using namespace std;
 
 int main()
 {
-    for(int i = 0; i < 4; ++i)              
+    for(int i = 0; i < 4; ++i)                  //Creamos una estructura de control For, donde la variable de control "i" será de tipo entero, inicializada en 0, con la condición de que se repetirá el ciclo mientras "i" sea menor que 4, y se irá incrementando en 1 su valor.
       {
-          switch(i)
+          switch(i)                             //Creamos una estructura de control Switch que tendrá como argumento el valor que vaya tomando la variable de control "i" a medida de que vaya avanzando el ciclo.
           {
-              case 0: cout<<"0"; break; 
-              case 1: cout<<"1"; continue;
-              case 2: cout<<"2"; break;
-              default: cout<<"D"; break;
+              case 0: cout<<"0"; break;         //Cuando "i" vale 0, imprimirá este valor y se terminará la ejecución en este punto dado el uso del "break", e inmediatamente saltará a la impresión de la línea que hay por fuera del "switch".
+              case 1: cout<<"1"; continue;      //Cuando "i" vale 1, imprimirá este valor y continuará la ejecución del código dado el uso del "continue", imprimiendo de una vez el valor siguiente.
+              case 2: cout<<"2"; break;         //Cuando "i" vale 2, se imprime el valor 2 junto al valor correspondiente al caso anterior y se terminará la ejecución en este punto dado el uso del "break", e inmediatamente saltará a la impresión de la línea que hay por fuera del "switch".
+              default: cout<<"D"; break;        //Cuando "i" vale 3, imprimirá este valor y se terminará la ejecución en este punto dado el uso del "break", e inmediatamente saltará a la impresión de la línea que hay por fuera del "switch".
           }
-
-          cout<<"*";
+          
+          cout<<"*";                            //Imprimirá un "*" cada vez que se corte el "Switch" a medida que avanza el ciclo:
+                                                //i=0----- 0*
+                                                //i=2----- 0*12*
+                                                //i=3----- 0*12*D*
       }
       return 0;
 }
