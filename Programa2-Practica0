@@ -1,0 +1,20 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int i = 1, j = 2;           //Se inicializan 2 variables de tipo entero, que funcionarán como contadores.
+       
+       if(i > j && j > i)       //Se establece que se deben cumplir los 2 argumentos de la condición (que "i" sea mayor que "j" y este a su vez sea mayor que "i"), debido al operador &&(Y), para que nuestra variable "i" aumente en 1 su valor.
+           i++;                 //Dado que por la naturaleza del operador lógico && y de los argumentos para este if y de las variables del ejercicio en sí, la variable "i" no puede incrementar en 1 su valor inicial, mantiendolo de esta forma en 1
+       if(i > j || j > i)       //Se establece que se deben cumplir uno de los 2 argumentos de la condición (que "i" sea mayor que "j" o que este sea mayor que "i"), debido al operador ||(O), para que nuestra variable "j" aumente en 1 su valor.
+           j++;                 //Dado que por la naturaleza del operador lógico || y como la variable "j" es mayor que "i", cumpliendose así uno de lso argumentos, la variable "j" aumenta su valor inicial en 1, obteniendo ahora un valor de 3
+       if(i | j)                //El argumento de este if establece que se lleve a cabo un operación a nivel bit, por lo que las 2 variables se evaluaran a nivel binario y arrojará un resultado, en este caso i(00000001)(1)|j(00000011)(3)=00000011(3)
+           i++;                 //Dado que por la naturaleza del operador | y como el argumento no exige que se requiera el cumplimiento de alguna condición, la variable "i" aumenta su valor inicial en 1, obteniendo ahora un valor de 2
+       if(i & j)                //El argumento de este if establece que se lleve a cabo un operación a nivel bit, por lo que las 2 variables se evaluaran a nivel binario y arrojará un resultado, en este caso i(00000010)(2)&j(00000011)(3)=00000010(2)
+           j++;                 //Dado que por la naturaleza del operador & y como el argumento no exige que se requiera el cumplimiento de alguna condición, la variable "j" aumenta su valor anterior (3) en 1, obteniendo ahora un valor de 4
+       
+       cout<<i * j<<endl;       //Operamos las 2 variables en una multiplicación (i valiendo 2 y j valiendo 4), lo cual nos arrojará un resultado de 8 y lo imprimimos.
+       return 0;
+}
