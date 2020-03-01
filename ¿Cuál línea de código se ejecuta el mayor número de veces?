@@ -1,0 +1,28 @@
+#include <iostream>
+
+using namespace std;
+int testFunction(int num1, int num2)
+{
+    int suma_pre = 0;
+    int j=1;
+
+    while(num2 >= 0)
+    {
+        int cuenta = 0;
+        
+        while(cuenta <= num2)
+        {
+            suma_pre += num1; //Esta linea, junto con la 16, son las lineas que mas ejecuciones tienen. 66 en Total.
+            ++cuenta;
+        }
+        --num2;
+    }
+
+    return suma_pre;
+}
+
+int main()
+{
+    int resultado = testFunction(3, 10);
+    cout << "Resultado: " << resultado << endl;
+}
