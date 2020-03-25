@@ -6,9 +6,8 @@ class ClaseA
     string nombre="";
     long long serial=0;
 
-
 public:
-    
+
     long long getSerial() const;
     string getNombre() const;
     void setNombre(const string &value);
@@ -60,7 +59,7 @@ class ListadeObjetos
         for (int i=0;i<20;i++)
         {
             if (objeto[i].getSerial()==0 && objeto[i].getNombre()=="")
-            {    
+            {
                 nuevoObjetoLista(objeto->getNombre(),objeto->getSerial(),obje);
                 objeto[i]=obje;
                 break;
@@ -131,8 +130,7 @@ class ListadeObjetos
                     {
                         objeto[item-1].setNombre("");
                         objeto[item-1].setSerial(0);
-                        cout<<"Se ha eliminado el item."<<endl;
-                        cout<<endl;
+                        cout<<"Se ha eliminado el item.\n"<<endl;
                     }
                 }
                 break;
@@ -143,8 +141,7 @@ class ListadeObjetos
             }
             default:
             {
-                cout<<"Opcion no valida."<<endl;
-                cout<<endl;
+                cout<<"Opcion no valida.\n"<<endl;
             }
             }
         }
@@ -161,7 +158,7 @@ class ListadeObjetos
             cin>>menu;
             cout<<endl;
 
-            switch (menu) 
+            switch (menu)
             {
             case 1:
             {
@@ -175,8 +172,7 @@ class ListadeObjetos
 
                     else
                     {
-                        cout<<"Item "<<i+1<<"\nNombre: "<<objeto[i].getNombre()<<", serial: "<<objeto[i].getSerial()<<endl;
-                        cout<<endl;
+                        cout<<"Item "<<i+1<<"\nNombre: "<<objeto[i].getNombre()<<", serial: "<<objeto[i].getSerial()<<"\n"<<endl;
                     }
                 }
 
@@ -205,7 +201,7 @@ class ListadeObjetos
                     }
                     else
                     {
-                        cout<<"Item "<<item<<"\nNombre: "<<objeto[item-1].getNombre()<<", Serial: "<<objeto[item-1].getSerial()<<endl;
+                        cout<<"Item "<<item<<"\nNombre: "<<objeto[item-1].getNombre()<<", Serial: "<<objeto[item-1].getSerial()<<"\n"<<endl;
                         cout<<endl;
                     }
                 }
@@ -217,8 +213,7 @@ class ListadeObjetos
             }
             default:
             {
-                cout<<"Opcion no valida."<<endl;
-                cout<<endl;
+                cout<<"Opcion no valida.\n"<<endl;
             }
             }
         }
@@ -237,7 +232,7 @@ int main()
         cin>>menu;
         cout<<endl;
 
-        switch (menu) 
+        switch (menu)
         {
         case 1:
         {
@@ -256,13 +251,12 @@ int main()
         }
         case 4:
         {
-            cout<<"Hasta luego."<<endl;
+            cout<<"Hasta luego.\n"<<endl;
             break;
         }
         default:
         {
-            cout<<"Opcion no valida."<<endl;
-            cout<<endl;
+            cout<<"Opcion no valida.\n"<<endl;
         }
         }
     }
