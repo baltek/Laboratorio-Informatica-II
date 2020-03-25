@@ -1,0 +1,270 @@
+#include <iostream>
+using namespace std;
+
+class ClaseA
+{
+    string nombre="";
+    long long serial=0;
+
+
+public:
+    
+    long long getSerial() const;
+    string getNombre() const;
+    void setNombre(const string &value);
+    void setSerial(const long long &value);
+
+friend void nuevoObjetoLista(string nomb, long long ser, ClaseA& obj);
+};
+
+void nuevoObjetoLista(string nomb, long long ser, ClaseA& obj)
+{
+    cout<<"________________________________________________________________________________________"<<endl;
+    cout<<"Ingrese el nombre: "<<endl;
+    cin>>nomb;
+    obj.nombre=nomb;
+    cout<<"Ingrese el serial: "<<endl;
+    cin>>ser;
+    obj.serial=ser;
+}
+
+string ClaseA::getNombre() const
+{
+return nombre;
+}
+
+void ClaseA::setNombre(const string &value)
+{
+nombre = value;
+}
+
+void ClaseA::setSerial(const long long &value)
+{
+serial = value;
+}
+
+long long ClaseA::getSerial() const
+{
+return serial;
+}
+
+
+class ListadeObjetos
+{
+    ClaseA objeto[20];
+    ClaseA obje;
+
+ public:
+    void almacenar()
+    {
+        for (int i=0;i<20;i++)
+        {
+            if (objeto[i].getSerial()==0 && objeto[i].getNombre()=="")
+            {    
+                nuevoObjetoLista(objeto->getNombre(),objeto->getSerial(),obje);
+                objeto[i]=obje;
+                break;
+            }
+            else
+            {
+                cout<<"La posicion "<<i+1<<" esta ocupada, pasando a la siguiente posicion."<<endl;
+            }
+        }
+    }
+
+    void eliminar()
+    {
+        int menu=1;
+        while (menu!=3)
+        {
+            cout<<"________________________________________________________________________________________"<<endl;
+            cout<<"Que desea eliminar?.\n\n1. La lista completa.\n2. Un item especifico.\n3. Salir.\n"<<endl;
+            cin>>menu;
+            cout<<endl;
+
+            switch (menu) {
+            case 1:
+            {
+                int j=0;
+                for (int i=0;i<20;i++)
+                {
+                    if (objeto[i].getNombre()=="" && objeto[i].getSerial()==0)
+                    {
+                        j++;
+                    }
+
+                    else
+                    {
+                        objeto[i].setNombre("");
+                        objeto[i].setSerial(0);
+                     }
+                }
+                if (j==20)
+                {
+                    cout<<"La lista estaba vacia.\n"<<endl;
+                }
+                else
+                {
+                    cout<<"Se ha eliminado la lista.\n"<<endl;
+                }
+
+               break;
+            }
+            case 2:
+            {
+                int item;
+                cout<<"________________________________________________________________________________________"<<endl;
+                cout<<"Que item desea eliminar? (Ingrese un numero del 1 al 20)"<<endl;
+                cin>>item;
+                cout<<endl;
+                if(item<=0 || item>20)
+                {
+                    cout<<"Ha ingresado un valor no valido.\n"<<endl;
+                }
+                else
+                {
+                    if (objeto[item-1].getNombre()=="" && objeto[item-1].getSerial()==0)
+                    {
+                        cout<<"La posicion se encontaraba vacia.\n"<<endl;
+                    }
+                    else
+                    {
+                        objeto[item-1].setNombre("");
+                        objeto[item-1].setSerial(0);
+                        cout<<"Se ha eliminado el item."<<endl;
+                        cout<<endl;
+                    }
+                }
+                break;
+            }
+            case 3:
+            {
+                break;
+            }
+            default:
+            {
+                cout<<"Opcion no valida."<<endl;
+                cout<<endl;
+            }
+            }
+        }
+    }
+
+    void imprimir()
+    {
+        int menu=1;
+
+        while (menu!=3)
+        {
+            cout<<"________________________________________________________________________________________"<<endl;
+            cout<<"Que desea imprimir?\n\n1. Toda la lista.\n2. Un item especifico.\n3. Salir.\n"<<endl;
+            cin>>menu;
+            cout<<endl;
+
+            switch (menu) 
+            {
+            case 1:
+            {
+                int j=0;
+                for (int i=0;i<20;i++)
+                {
+                    if (objeto[i].getNombre()=="" && objeto[i].getSerial()==0)
+                    {
+                        j++;
+                    }
+
+                    else
+                    {
+                        cout<<"Item "<<i+1<<"\nNombre: "<<objeto[i].getNombre()<<", serial: "<<objeto[i].getSerial()<<endl;
+                        cout<<endl;
+                    }
+                }
+
+                if (j==20)
+                {
+                    cout<<"La lista esta vacia.\n"<<endl;
+                }
+               break;
+            }
+            case 2:
+            {
+                int item;
+                cout<<"________________________________________________________________________________________"<<endl;
+                cout<<"Que item desea imprimir? (Ingrese un numero del 1 al 20)"<<endl;
+                cin>>item;
+                cout<<endl;
+                if(item<=0 || item>20)
+                {
+                    cout<<"Ha ingresado un valor no valido.\n"<<endl;
+                }
+                else
+                {
+                    if (objeto[item-1].getNombre()=="" && objeto[item-1].getSerial()==0)
+                    {
+                        cout<<"La posicion esta vacia.\n"<<endl;
+                    }
+                    else
+                    {
+                        cout<<"Item "<<item<<"\nNombre: "<<objeto[item-1].getNombre()<<", Serial: "<<objeto[item-1].getSerial()<<endl;
+                        cout<<endl;
+                    }
+                }
+                break;
+            }
+            case 3:
+            {
+                break;
+            }
+            default:
+            {
+                cout<<"Opcion no valida."<<endl;
+                cout<<endl;
+            }
+            }
+        }
+    }
+};
+
+int main()
+{
+    ListadeObjetos ob;
+    int menu=5;
+
+    while (menu!=4)
+    {
+        cout<<"________________________________________________________________________________________"<<endl;
+        cout<<"Ingrese la operacion que desea realizar para la lista.\n\n1. Almacenar item.\n2. Eliminar.\n3. Imprimir.\n4. Salir.\n"<<endl;
+        cin>>menu;
+        cout<<endl;
+
+        switch (menu) 
+        {
+        case 1:
+        {
+           ob.almacenar();
+           break;
+        }
+        case 2:
+        {
+            ob.eliminar();
+            break;
+        }
+        case 3:
+        {
+            ob.imprimir();
+            break;
+        }
+        case 4:
+        {
+            cout<<"Hasta luego."<<endl;
+            break;
+        }
+        default:
+        {
+            cout<<"Opcion no valida."<<endl;
+            cout<<endl;
+        }
+        }
+    }
+    return 0;
+}
