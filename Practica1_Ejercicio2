@@ -1,0 +1,196 @@
+#include <iostream>
+
+using namespace std;
+
+class Fecha
+{
+    int anio, dia, mesNum, hora, minutos;
+    string mesLetra;
+
+public:
+    int diasXmes[12]={31, 28, 31, 30,31, 30, 31, 31, 30, 31, 30, 31};
+    string meses [12] = { "enero", "febrero", "marzo","abril","mayo","junio","julio", "agosto","septiembre","octubre","noviembre","diciembre"};
+    bool verificarFecha();
+    void ingresarFecha(int, int, int, int, int);
+    int getAnio() const;
+    int getDia() const;
+    int getMesNum() const;
+    int getHora() const;
+    int getMinutos() const;
+    void setMesNum(int value);
+};
+
+class Cita
+{
+    string Persona1, Persona2, lugar;\
+    friend class ClaseExterna;
+    Fecha diaCita;
+
+
+public:
+    string getPersona1() const;
+    string getPersona2() const;
+    string getLugar() const;
+};
+
+class ClaseExterna
+{
+    Cita Lista[10];
+
+public:
+    void crearCita(string nom1, string nom2, string lug, Cita& cit);
+
+    void CosultarCitas();
+
+};
+void ClaseExterna::crearCita(string nom1, string nom2, string lug, Cita &cit)
+{
+    for (int i=0;i<10;i++)
+    {
+        if (Lista[i].getPersona1()==""&&Lista->getPersona2()==""&&Lista->getLugar()=="")
+        {
+            cout<<"Ingrese el nombre de la primer persona que se va a reunir"<<endl;
+            cin>>nom1;
+            cit.Persona1=nom1;
+            cout<<"Ingrese el nombre de la segunda persona que se va a reunir"<<endl;
+            cin>>nom2;
+            cit.Persona2=nom2;
+            cout<<"En que lugar se van a reunir?"<<endl;
+            cin>>lug;
+            cit.lugar=lug;
+            Lista[i]=cit;
+
+            
+        }
+        else
+        {
+            cout<<"La casilla"<<i+1<<" ya tiene una cita agendada, pasando a la siguiente casilla."<<endl;
+        }
+        for (int j=0;j<10;j++)
+        {
+
+            cout<<Lista[j].getLugar()<<Lista[j].getPersona1()<<Lista[j].getPersona2()<<endl;
+        }
+}}
+
+int Fecha::getAnio() const
+{
+return anio;
+}
+
+int Fecha::getDia() const
+{
+return dia;
+}
+
+int Fecha::getMesNum() const
+{
+return mesNum;
+}
+
+int Fecha::getHora() const
+{
+return hora;
+}
+
+int Fecha::getMinutos() const
+{
+return minutos;
+}
+
+
+void Fecha::ingresarFecha(int a, int m, int d, int h, int min)
+{
+    cout<<"ingrese el anio de la cita"<<endl;
+    cin>>a;
+    anio=a;
+    cout<<"ingrese el mes de la cita"<<endl;
+    cin>>m;
+    mesNum=m;
+    cout<<"ingrese el dia de la cita"<<endl;
+    cin>>d;
+    dia=d;
+    cout<<"ingrese la hora de la cita"<<endl;
+    cin>>h;
+    hora=h;
+    cout<<"ingrese minutos la cita"<<endl;
+    cin>>min;
+    minutos=min;
+}
+
+bool Fecha::verificarFecha()
+{
+    Fecha verifica;
+    if(minutos < 0 || minutos >= 60 || hora < 0 || hora >= 24) return false;
+
+    if((anio%4 == 0 && anio%100 != 0) || anio%400 == 0) diasXmes[1]++;
+
+    if(mesNum < 1 || mesNum> 12 ) return false;
+
+
+    if(dia <= 0 || dia > diasXmes[mesNum-1]) return false;
+
+    return true;
+}
+
+
+
+int main()
+{
+   int menu=1;
+
+   while (menu!=3)
+   {
+       cout<<"Ingrese la opcion que desea realizar:\n 1.Agendar.\n 2.Consultar.\n 3.Salir."<<endl;
+       cin>>menu;
+       switch (menu)
+       {
+       case 1:
+       {
+           Fecha cita;
+           ClaseExterna nombres;
+           Cita agregar;
+           bool correcta=false;
+           while (correcta==false)
+           {
+           cita.ingresarFecha(cita.getAnio(),cita.getDia(),cita.getHora(),cita.getMesNum(),cita.getMinutos());
+           correcta = cita.verificarFecha();
+           if(correcta==true) cout << "Fecha agendada." << endl;
+
+           else cout << "La fecha ingresada no tiene un formato valido." << endl;
+           }
+           nombres.crearCita(agregar.getPersona1(),agregar.getPersona2(),agregar.getLugar(), agregar);
+           break;
+       }
+       case 2:
+           {
+               cout<<"hola"<<endl;
+               break;
+           }
+       case 3:
+       {
+           cout<<"adios"<<endl;
+           break;
+       }
+       }
+   }
+   return 0;
+
+}
+
+
+
+string Cita::getPersona2() const
+{
+return Persona2;
+}
+
+string Cita::getLugar() const
+{
+return lugar;
+}
+
+string Cita::getPersona1() const
+{
+return Persona1;
+}
